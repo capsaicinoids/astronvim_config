@@ -43,7 +43,7 @@ local config = {
   options = {
     opt = {
       -- set to true or false etc.
-      relativenumber = true, -- sets vim.opt.relativenumber
+      relativenumber = false, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
       spell = false, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
@@ -293,6 +293,27 @@ local config = {
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
     },
+    heirline = function(config)
+      config[1] = {
+        -- set the fg/bg of the statusline
+        hl = { fg = "fg", bg = "bg" },
+        -- when adding the mode component, enable the mode text with padding to the left/right of it
+        astronvim.status.component.mode { mode_text = { padding = { left = 1, right = 1 } } },
+        -- add all the other components for the statusline
+        astronvim.status.component.git_branch(),
+        astronvim.status.component.file_info(),
+        astronvim.status.component.git_diff(),
+        astronvim.status.component.diagnostics(),
+        astronvim.status.component.fill(),
+        astronvim.status.component.macro_recording(),
+        astronvim.status.component.fill(),
+        astronvim.status.component.lsp(),
+        astronvim.status.component.treesitter(),
+        astronvim.status.component.nav(),
+      }
+      -- return the final configuration table
+      return config
+    end,
   },
 
   -- LuaSnip Options
