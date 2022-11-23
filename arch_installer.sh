@@ -7,7 +7,7 @@
 
 
 # Install Necessary Packages
-sudo pacman -S neovim kitty alacritty i3 python blanket git htop pavucontrol lazygitflameshot nemo
+sudo pacman -S neovim kitty alacritty i3 python blanket git htop pavucontrol lazygit flameshot nemo
 
 # Install Yay & Stuff
 cd ~/Downloads && mkdir 'Git Clone' || cd ~/Downloads/'Git Clone'/ && xargs -L1 git clone <<EOF
