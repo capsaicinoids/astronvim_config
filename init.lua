@@ -48,15 +48,16 @@ local config = {
       number = true, -- sets vim.opt.number
       spell = false, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+      guifont = { "Iosevka", ":h12" },
       wrap = false, -- sets vim.opt.wrap
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
+      autoformat_enabled = false, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
       cmp_enabled = true, -- enable completion at start
       autopairs_enabled = true, -- enable autopairs at start
-      diagnostics_enabled = true, -- enable diagnostics at start
-      status_diagnostics_enabled = true, -- enable diagnostics in statusline
+      diagnostics_enabled = false, -- enable diagnostics at start
+      status_diagnostics_enabled = false, -- enable diagnostics in statusline
       jukit_output_new_os_window = 1,
       jukit_outhist_new_os_window = 1,
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
@@ -230,6 +231,7 @@ local config = {
       -- ["<C-S-k>"] = { ":call jukit#cells#jump_to_previous_cell()<cr>" },
       -- ["<C-S-j>"] = { ":call jukit#cells#jump_to_next_cell()<cr>" },
       -- Code Runner
+      ["sl"] = { ":set lines=30<cr>" },
       ["<leader>rc"] = { ":RunCode<cr>" },
       -- CSV Tabularize
       -- ["<t-b>"] = { ":CSVTabularize<cr>" }
