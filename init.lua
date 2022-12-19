@@ -223,6 +223,8 @@ local config = {
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       -- quick save
       ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      -- quick quit
+      ["<C-x>"] = { ":x!<cr>" },
       -- Move Lines
       ["<A-j>"] = { ":m .+1<cr>==" },
       ["<A-k>"] = { ":m .-2<cr>==" },
