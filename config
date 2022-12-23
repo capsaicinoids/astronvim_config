@@ -35,7 +35,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Adjust Name To Workspace Automatically
+exec_always --no-startup-id exec i3-workspace-names-daemon
+
+
 # Use pactl to adjust volume in PulseAudio.
+
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -141,18 +146,26 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # Assigned workspace into specific screens
-workspace 1 output HDMI-2
-workspace 2 output HDMI-2
-workspace 3 output HDMI-2
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1 
 workspace 4 output HDMI-2
-workspace 5 output DP-1
-workspace 6 output DP-1
-workspace 7 output DP-1
-workspace 8 output eDP-1
-workspace 9 output eDP-1
-workspace 10 output eDP-1
+workspace 5 output HDMI-2 
+workspace 6 output HDMI-2 
+workspace 7 output HDMI-2 
+workspace 8 output DP-1
+workspace 9 output DP-1
+workspace 10 output DP-1
+
+
+# Yet Another Yogurt
+bindsym $mod+n workspace prev
+bindsym $mod+m workspace next
+bindsym $mod+Shift+n move container to workspace prev
+bindsym $mod+Shift+m move container to workspace next
 
 # move focused container to workspace
+
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -202,6 +215,14 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	status_command i3status
+	colors {
+		background #000000
+		statusline #ffffff
+
+		inactive_workspace #FFFF00 #000000
+		focused_workspace #000000 #ffff00
+		active_workspace #FFFF00 #000000
+	}
 }
 
 
@@ -213,11 +234,16 @@ client.focused		#43B9D8 #00FF00 #000000 #00FFFF #00FF00
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+c exec code
 # bindsym $mod+a exec anki
-bindsym $mod+n exec nemo
+bindsym $mod+q exec nemo
 bindsym $mod+b exec brave
-bindsym $mod+q exec virtualbox
+bindsym $mod+Shift+b exec brightness-controller
+# bindsym $mod+q exec virtualbox
 bindsym $mod+Shift+p exec kitty --listen-on=unix:@"$(date +%s%N)" -o allow_remote_control=yes --detach
-exec --no-startup-id xrandr --output eDP-1 --auto --right-of HDMI-2
+exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1
+exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
+# exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
+# exec --no-startup-id xrandr --output
+
 
 # Switching Workspace with Numpad
 bindsym $mod+Mod2+KP_1 workspace 1
