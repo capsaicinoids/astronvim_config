@@ -165,7 +165,6 @@ bindsym $mod+Shift+n move container to workspace prev
 bindsym $mod+Shift+m move container to workspace next
 
 # move focused container to workspace
-
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -215,10 +214,11 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	status_command i3status
+	separator_symbol ":|:"
 	colors {
 		background #000000
-		statusline #ffffff
-
+		statusline #00FFFF
+		separator #FF00FF
 		inactive_workspace #FFFF00 #000000
 		focused_workspace #000000 #ffff00
 		active_workspace #FFFF00 #000000
@@ -243,6 +243,9 @@ exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1
 exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
 # exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
 # exec --no-startup-id xrandr --output
+
+# Lock The Screen With i3lock
+bindsym Control+Mod1+l exec "i3lock -c 000000"
 
 
 # Switching Workspace with Numpad

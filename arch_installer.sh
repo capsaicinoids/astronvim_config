@@ -6,8 +6,11 @@
 # EOF
 
 
+# Useful Packages That You Might Need
+# zaproxy java openjdk openssh
+
 # Install Necessary Packages
-sudo pacman -S neovim kitty alacritty i3 python blanket git htop pavucontrol lazygit flameshot nemo exa bat ncdu fd tldr zathura
+sudo pacman -S neovim kitty alacritty i3 python blanket git htop pavucontrol lazygit flameshot nemo exa bat ncdu fd tldr zathura termshark vlc vifm --noconfirm
 
 # Install Yay & Stuff
 cd ~/Downloads && mkdir 'Git Clone' || cd ~/Downloads/'Git Clone'/ && xargs -L1 git clone <<EOF
@@ -23,7 +26,7 @@ cp ~/Downloads/Git\ Clone/astronvim_config/config ~/.config/i3
 nvim +PackerSync
 
 # Instal AUR Packages
-yay -S brave-bin alacritty-colorscheme droidcam brightness-controller-git visual-studio-code-bin -y
+yay -S brave-bin alacritty-colorscheme droidcam brightness-controller-git visual-studio-code-bin --noconfirm
 
 # Install vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

@@ -61,7 +61,7 @@ local config = {
       jukit_output_new_os_window = 1,
       jukit_outhist_new_os_window = 1,
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
-      ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+      ui_notifications_enabled = false, -- disable notifications when toggling UI elements
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -132,7 +132,7 @@ local config = {
       indent_blankline = true,
       lightspeed = false,
       ["neo-tree"] = true,
-      notify = true,
+      notify = false,
       ["nvim-tree"] = false,
       ["nvim-web-devicons"] = true,
       rainbow = true,
