@@ -33,14 +33,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Adjust Name To Workspace Automatically
-exec_always --no-startup-id exec i3-workspace-names-daemon
+# exec_always --no-startup-id exec i3-workspace-names-daemon
 
+# Set Wallpapers on startup
+exec_always --no-startup-id exec ~/.fehbg
 
 # Use pactl to adjust volume in PulseAudio.
-
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -49,8 +49,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 
 # Set Brightness
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +2%
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -61,6 +61,9 @@ bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# Launch xfce-polkit 
+exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
@@ -183,6 +186,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+# Notification
+exec --no-startup-id dunst
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
@@ -210,24 +216,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	status_command i3status
-	separator_symbol ":|:"
-	colors {
-		background #000000
-		statusline #00FFFF
-		separator #FF00FF
-		inactive_workspace #FFFF00 #000000
-		focused_workspace #000000 #ffff00
-		active_workspace #FFFF00 #000000
-	}
-}
+# Old Boring Theme Config
 
-
-# Set Collors
-client.focused		#43B9D8 #00FF00 #000000 #00FFFF #00FF00
+# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
+# bar {
+# 	status_command i3status
+# 	position top
+# 	separator_symbol ":|:"
+# 	colors {
+# 		background #000000
+# 		statusline #00FFFF
+# 		separator #FF00FF
+# 		inactive_workspace #000000 #OOFFFF
+# 		focused_workspace #000000 #ffff00
+# 		active_workspace #FFFF00 #000000
+# 	}
+# }
+#
+#
+# # Set Collors
+# client.focused		#43B9D8 #00FF00 #000000 #FF00FF #00FF00
 
 
 # ----------------------------------- YOUR CUSTOM KEYBINDINGS ----------------------------------------
@@ -239,39 +247,41 @@ bindsym $mod+b exec brave
 bindsym $mod+Shift+b exec brightness-controller
 # bindsym $mod+q exec virtualbox
 bindsym $mod+Shift+p exec kitty --listen-on=unix:@"$(date +%s%N)" -o allow_remote_control=yes --detach
-exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1
-exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
+
+# exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1
+# exec --no-startup-id xrandr --output DP-1 --auto --left-of eDP-1
+
 # exec --no-startup-id xrandr --output DP-1 --auto --right-of HDMI-2
 # exec --no-startup-id xrandr --output
+exec_always --no-startup-id autorandr --change --force --default work
 
 # Lock The Screen With i3lock
-bindsym Control+Mod1+l exec "i3lock -c 000000"
-
-
-# Switching Workspace with Numpad
-bindsym $mod+Mod2+KP_1 workspace 1
-bindsym $mod+Mod2+KP_2 workspace 2
-bindsym $mod+Mod2+KP_3 workspace 3
-bindsym $mod+Mod2+KP_4 workspace 4
-bindsym $mod+Mod2+KP_5 workspace 5
-bindsym $mod+Mod2+KP_6 workspace 6
-bindsym $mod+Mod2+KP_7 workspace 7
-bindsym $mod+Mod2+KP_8 workspace 8
-bindsym $mod+Mod2+KP_9 workspace 9
-bindsym $mod+Mod2+KP_0 workspace 10
-
-bindsym $mod+Shift+Mod2+KP_End move container to workspace 1
-bindsym $mod+Shift+Mod2+KP_Down move container to workspace 2
-bindsym $mod+Shift+Mod2+KP_Next move container to workspace 3
-bindsym $mod+Shift+Mod2+KP_Left move container to workspace 4
-bindsym $mod+Shift+Mod2+KP_Begin move container to workspace 5
-bindsym $mod+Shift+Mod2+KP_Right move container to workspace 6
-bindsym $mod+Shift+Mod2+KP_Home move container to workspace 7
-bindsym $mod+Shift+Mod2+KP_Up move container to workspace 8
-bindsym $mod+Shift+Mod2+KP_Prior move container to workspace 9
-bindsym $mod+Shift+Mod2+KP_Insert move container to workspace 10
+bindsym Control+Shift+l exec "i3lock -c 000000"
 
 # i3-gaps config
 for_window [class="^.*"] border pixel 2
 gaps inner 8
 gaps outer 4
+
+# ChatGPT Theme Config
+bar {
+    status_command i3status
+    position top
+    separator_symbol ":|:"
+    colors {
+        background #000000
+        statusline #FFFFFF
+        separator #FF00FF
+        focused_workspace #OOFF00 #000000 #OOFFOO
+        inactive_workspace #a9a9a9 #000000 #a9a9a9
+        active_workspace #ff69b4 #000000 #ff69b4
+    }
+}
+
+client.focused #43B9D8 #FFFFFF #000000 #FF00FF #FFFFFF
+
+
+
+
+
+

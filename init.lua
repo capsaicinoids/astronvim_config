@@ -9,8 +9,8 @@ local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
-    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    channel = "stable", -- "stable" or "nightly"
+    version = "v2.9.0", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
@@ -46,7 +46,7 @@ local config = {
       -- set to true or false etc.
       relativenumber = false, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
-      spell = false, -- sets vim.opt.spell
+      spell = true, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
       guifont = { "Iosevka", ":h12" },
       wrap = false, -- sets vim.opt.wrap
@@ -56,12 +56,12 @@ local config = {
       autoformat_enabled = false, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
       cmp_enabled = true, -- enable completion at start
       autopairs_enabled = true, -- enable autopairs at start
-      diagnostics_enabled = false, -- enable diagnostics at start
-      status_diagnostics_enabled = false, -- enable diagnostics in statusline
+      diagnostics_enabled = true, -- enable diagnostics at start
+      status_diagnostics_enabled = true, -- enable diagnostics in statusline
       jukit_output_new_os_window = 1,
       jukit_outhist_new_os_window = 1,
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
-      ui_notifications_enabled = false, -- disable notifications when toggling UI elements
+      ui_notifications_enabled = true, -- disable notifications when toggling UI elements
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -271,7 +271,8 @@ local config = {
         filetype = {
           python = "python3 -u",
           java = "cd $dir && java $fileName",
-        },
+          javascript = "node"
+        }
       })
 
       -- We also support a key value style plugin definition similar to NvChad:
