@@ -83,12 +83,26 @@ return {
         vim.g.sonokai_style = "shusia"
       end,
     },
-    {"folke/tokyonight.nvim"}
+    {
+      'CRAG666/code_runner.nvim', 
+      lazy = false,
+      config = function()
+        require('code_runner').setup {
+          filetype = {
+            python = "python3 -u",
+            java = "cd $dir && java $fileName",
+            javascript = "node"
+          }
+        }
+      end,
+    },
+    {"folke/tokyonight.nvim", lazy = false},
   },
   mappings = {
     n = {
         ["<A-j>"] = { ":m .+1<cr>==" },
         ["<A-k>"] = { ":m .-2<cr>==" },
+        ["<leader>rc"] = { ":RunCode<cr>" }
     },
   },
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
