@@ -17,4 +17,4 @@ list_img = os.listdir(main_dir)
 
 random_img = random.choice(list_img)
 
-change_bg = subprocess.run(['swww','img', main_dir + f'/{random_img}', '--transition-fps', '60', '--transition-type', 'wipe', '--transition-duration', '5'])
+change_bg = subprocess.run(['swww','img', main_dir + f'/{random_img}', '--transition-fps', '60', '--transition-type', 'wipe', '--transition-angle', '150', '--transition-duration', '5'])
