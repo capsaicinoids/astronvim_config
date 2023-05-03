@@ -31,6 +31,8 @@ tooltip label{
     padding: 5px;
     color: #313244;
     margin-right: 5px;
+    border-bottom: 2px solid #e7e7ec;
+    border-radius: 2px;
 }
 
 #workspaces button.active {
